@@ -1,0 +1,16 @@
+SkriptDisplays\Elements\Types\TypeStructure$1.class
+SkriptDisplays\Elements\Effects\EffCreateDisplay.class
+SkriptDisplays\Elements\Effects\EffSetBlockDisplay.class
+SkriptDisplays\Elements\Types\TypeStructure$2.class
+SkriptDisplays\Elements\Types\TypePlacedStructure$1.class
+SkriptDisplays\Elements\Effects\EffCreateStructure.class
+SkriptDisplays\Elements\Effects\EffPlaceStructure.class
+SkriptDisplays\Elements\Expressions\ExprLastSpawnedBlockDisplay.class
+SkriptDisplays\Main.class
+SkriptDisplays\Elements\Effects\EffRemoveStructure.class
+SkriptDisplays\Elements\Effects\EffSetStructureSize.class
+SkriptDisplays\Elements\Types\TypePlacedStructure.class
+SkriptDisplays\Elements\Types\TypeStructure.class
+SkriptDisplays\Elements\Effects\EffRotateStructure.class
+SkriptDisplays\PlacedStructure.class
+SkriptDisplays\Structure.class
