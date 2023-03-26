@@ -1,6 +1,7 @@
 SkriptDisplays\Elements\Types\TypeStructure$1.class
 SkriptDisplays\Elements\Effects\EffCreateDisplay.class
 SkriptDisplays\Elements\Effects\EffSetBlockDisplay.class
+SkriptDisplays\Elements\Effects\EffStartInterpolation.class
 SkriptDisplays\Elements\Types\TypeStructure$2.class
 SkriptDisplays\Elements\Types\TypePlacedStructure$1.class
 SkriptDisplays\Elements\Effects\EffCreateStructure.class

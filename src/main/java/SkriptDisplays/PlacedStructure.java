@@ -1,10 +1,13 @@
 package SkriptDisplays;
 
+import jdk.javadoc.internal.doclets.toolkit.BaseConfiguration;
+import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.util.Transformation;
 
 import java.io.Serializable;
@@ -38,6 +41,7 @@ public class PlacedStructure implements Serializable {
         }
     }
     public void setSize(Float size) {
+        System.out.println("Size: " + size);
         for (Entity e : entities.values()) {
             // get vector from l to e
             Location l = e.getLocation();
@@ -87,5 +91,22 @@ public class PlacedStructure implements Serializable {
         }
 
         this.rotation = angle;
+    }
+    public void startInterpolation(Float size, Float size2, Float size3, int duration) {
+        System.out.println("Size: " + size + ", " + size2 + ", " + size3 + "Duration: " + duration);
+        for (Entity e : entities.values()) {
+            BlockDisplay bd = (BlockDisplay) e;
+            bd.setInterpolationDelay(0);
+            bd.setInterpolationDuration(duration);
+            // offset
+            Transformation t = bd.getTransformation();
+            Location l = e.getLocation();
+            double vx = l.getX() - location.getX();
+            double vy = l.getY() - location.getY();
+            double vz = l.getZ() - location.getZ();
+            t.getTranslation().set(vx * (size - 1), vy * (size2 - 1), vz * (size3 - 1));
+            t.getScale().set(size, size2, size3);
+            bd.setTransformation(t);
+        }
     }
 }

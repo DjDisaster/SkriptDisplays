@@ -4,6 +4,9 @@ import SkriptDisplays.Elements.Types.TypePlacedStructure;
 import SkriptDisplays.Elements.Types.TypeStructure;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
+import net.kyori.adventure.text.TextComponent;
+import org.bukkit.Bukkit;
+import org.bukkit.Server;
 import org.bukkit.entity.Entity;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,14 +22,14 @@ public final class Main extends JavaPlugin {
     public static Double id = 0.0;
     @Override
     public void onEnable() {
-        // Plugin startup logic
+
         instance = this;
         addon = Skript.registerAddon(this);
         // Plugin startup logic
 
         TypeStructure.register();
         TypePlacedStructure.register();
-        getLogger().info("SkConvenience is now enabled.");
+        getLogger().info("SkriptDisplays is now enabled.");
         try {
             //This will register all our syntax for us. Explained below
             addon.loadClasses("SkriptDisplays", "Elements");
