@@ -11,15 +11,16 @@ import org.jetbrains.annotations.Nullable;
 
 public class EffSetStructureSize extends Effect {
     static {
-        Skript.registerEffect(EffSetStructureSize.class, "Set [structure] size of %object% to %number%");
+        Skript.registerEffect(EffSetStructureSize.class, "set [structure] size of %placedstructure% to %number%");
     }
     private Expression<PlacedStructure> structure;
     private Expression<Number> size;
+
     @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
-        this.structure = (Expression<PlacedStructure>) expressions[0];
-        this.size = (Expression<Number>) expressions[1];
+        structure = (Expression<PlacedStructure>) expressions[0];
+        size = (Expression<Number>) expressions[1];
         return true;
     }
 
@@ -32,6 +33,7 @@ public class EffSetStructureSize extends Effect {
     protected void execute(Event event) {
         PlacedStructure ps = structure.getSingle(event);
         if (ps == null) return;
+
         Float size2 = size.getSingle(event).floatValue();
         ps.setSize(size2);
     }

@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 @Since("1.0")
 public class ExprLastSpawnedBlockDisplay extends SimpleExpression<Entity> {
     static {
-        Skript.registerExpression(ExprLastSpawnedBlockDisplay.class, Entity.class, ExpressionType.SIMPLE, "Last Spawned Block Display");
+        Skript.registerExpression(ExprLastSpawnedBlockDisplay.class, Entity.class, ExpressionType.SIMPLE, "last spawned block display");
     }
 
     @Override

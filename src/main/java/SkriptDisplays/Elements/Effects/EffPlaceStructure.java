@@ -15,17 +15,18 @@ import org.jetbrains.annotations.Nullable;
 
 public class EffPlaceStructure extends Effect {
     static {
-        Skript.registerEffect(EffPlaceStructure.class, "place structure %object% at %location% [stored|put] in %object%");
+        Skript.registerEffect(EffPlaceStructure.class, "place [the] structure %displaystructure% at %location% [and [store [it]] in %-object%]");
     }
     private Expression<Structure> structure;
     private Expression<Location> location;
-    private Variable<?> var;
+    private Variable<?> variable;
+
     @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
-        this.structure = (Expression<Structure>) expressions[0];
-        this.location = (Expression<Location>) expressions[1];
-        this.var = (Variable<?>) expressions[2];
+        structure = (Expression<Structure>) expressions[0];
+        location = (Expression<Location>) expressions[1];
+        variable = (Variable<?>) expressions[2];
         return true;
     }
 
@@ -38,9 +39,11 @@ public class EffPlaceStructure extends Effect {
     protected void execute(Event event) {
         Location loc = location.getSingle(event);
         Structure s = structure.getSingle(event);
-        if (loc == null || s == null || var == null) return;
+        if (loc == null || s == null) return;
+
         PlacedStructure ps = new PlacedStructure();
         ps.placeStructure(s, loc);
-        var.change(event, new Object[]{ps}, Changer.ChangeMode.SET);
+
+        if (variable != null) variable.change(event, new Object[]{ps}, Changer.ChangeMode.SET);
     }
 }

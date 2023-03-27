@@ -18,14 +18,15 @@ public class EffStartInterpolation extends Effect {
     private Expression<Number> y;
     private Expression<Number> z;
     private Expression<Number> ticks;
+
     @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
-        this.structure = (Expression<PlacedStructure>) expressions[0];
-        this.x = (Expression<Number>) expressions[1];
-        this.y = (Expression<Number>) expressions[2];
-        this.z = (Expression<Number>) expressions[3];
-        this.ticks = (Expression<Number>) expressions[4];
+        structure = (Expression<PlacedStructure>) expressions[0];
+        x = (Expression<Number>) expressions[1];
+        y = (Expression<Number>) expressions[2];
+        z = (Expression<Number>) expressions[3];
+        ticks = (Expression<Number>) expressions[4];
         return true;
     }
 
@@ -38,6 +39,7 @@ public class EffStartInterpolation extends Effect {
     protected void execute(Event event) {
         PlacedStructure ps = structure.getSingle(event);
         if (ps == null) return;
+
         Float size1 = x.getSingle(event).floatValue();
         try {
             Float size2 = y.getSingle(event).floatValue();
