@@ -3,4 +3,5 @@ version: '1.0 (The cool one)'
 main: SkriptDisplays.Main
 api-version: 1.19
 author: DjDisaster [An idiot]
+depend: [ Skript ]
 description: A plugin that allows you to use Skript to do weird stuff idk check skripthub why would you read this? idk either.

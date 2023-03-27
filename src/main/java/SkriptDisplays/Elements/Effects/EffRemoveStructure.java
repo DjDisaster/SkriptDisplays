@@ -13,15 +13,16 @@ import org.jetbrains.annotations.Nullable;
 
 public class EffRemoveStructure extends Effect {
     static {
-        Skript.registerEffect(EffRemoveStructure.class, "remove [placed] structure %object%");
+        Skript.registerEffect(EffRemoveStructure.class, "remove [placed [display]] structure %placedstructure%");
     }
     private Expression<PlacedStructure> structure;
     private Variable<?> var;
+
     @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
-        this.structure = (Expression<PlacedStructure>) expressions[0];
-        this.var = (Variable<?>) expressions[0];
+        structure = (Expression<PlacedStructure>) expressions[0];
+        var = (Variable<?>) expressions[0];
         return true;
     }
 
@@ -35,7 +36,7 @@ public class EffRemoveStructure extends Effect {
         PlacedStructure ps = structure.getSingle(event);
         if (ps == null) return;
         ps.remove();
-        ps = null;
+
         if (var != null) var.change(event, new Object[]{null}, Changer.ChangeMode.SET);
     }
 }

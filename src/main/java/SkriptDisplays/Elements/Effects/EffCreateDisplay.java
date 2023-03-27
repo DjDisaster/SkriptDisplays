@@ -9,24 +9,28 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.Variable;
 import ch.njol.util.Kleenean;
 import org.bukkit.Location;
+import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.ItemDisplay;
+import org.bukkit.entity.TextDisplay;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 public class EffCreateDisplay extends Effect {
     static {
-        Skript.registerEffect(EffCreateDisplay.class, "Create (0¦Block|1¦Item|2¦Text) display at %location% [(and store it|stored) in %-object%]");
+        Skript.registerEffect(EffCreateDisplay.class, "create (block|1:item|2:text) display at %location% [and [store [it]] in %-object%]");
     }
 
     private Expression<Location> location;
-    private Variable<?> var;
+    private Variable<?> variable;
     private int type;
+
     @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
-        this.location = (Expression<Location>) expressions[0];
-        this.var = (Variable<?>) expressions[1];
-        this.type = parser.mark;
+        location = (Expression<Location>) expressions[0];
+        variable = (Variable<?>) expressions[1];
+        type = parser.mark;
         return true;
     }
 
@@ -41,20 +45,19 @@ public class EffCreateDisplay extends Effect {
         if (loc == null) return;
         Entity e = null;
         switch (type) {
-            case 0:
-                e = loc.getWorld().spawn(loc, org.bukkit.entity.BlockDisplay.class);
+            case 0 -> {
+                e = loc.getWorld().spawn(loc, BlockDisplay.class);
                 Main.lastSpawnedBlockDisplay = e;
-                break;
-            case 1:
-                e = loc.getWorld().spawn(loc, org.bukkit.entity.ItemDisplay.class);
+            }
+            case 1 -> {
+                e = loc.getWorld().spawn(loc, ItemDisplay.class);
                 Main.lastSpawnedItemDisplay = e;
-                break;
-            case 2:
-                e = loc.getWorld().spawn(loc, org.bukkit.entity.TextDisplay.class);
+            }
+            case 2 -> {
+                e = loc.getWorld().spawn(loc, TextDisplay.class);
                 Main.lastSpawnedTextDisplay = e;
-                break;
+            }
         }
-        if (var == null) return;
-        var.change(event, new Object[]{e}, Changer.ChangeMode.SET);
+        if (variable != null) variable.change(event, new Object[]{e}, Changer.ChangeMode.SET);
     }
 }
