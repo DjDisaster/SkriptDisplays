@@ -1,6 +1,6 @@
 name: SkriptDisplays
 version: '1.0 (The cool one)'
-main: SkriptDisplays.Main
+main: me.djdisaster.skriptdisplays.SkriptDisplays
 api-version: 1.19
 author: DjDisaster [An idiot]
 depend: [ Skript ]
